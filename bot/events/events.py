@@ -1,6 +1,7 @@
 import re
 import disnake
 from disnake.ext import commands
+from config import settings
 
 CENSORED_WORDS = ['ananas', 'pineapple', 'ананас']
 
@@ -38,3 +39,19 @@ def setup_events(bot):
             await message.delete()
             await message.channel.send(
                 f'{message.author.mention}, ваше сообщение было удалено за использование запрещенного содержания.')
+
+    @bot.event
+    async def on_member_join(member):
+        role = disnake.utils.get(member.guild.roles, id=1250808114748456980)
+        channel = bot.get_channel(settings.CHANNEL_ID_WELCOME)
+
+        embed = disnake.Embed(
+            title='Welcome!',
+            description=f'Welcome, {member.mention}!',
+            color=disnake.Color.green()
+        )
+
+        embed.set_image(url='https://i.pinimg.com/originals/0b/2a/62/0b2a624bc3952975a32a7f314c0770b9.gif')
+
+        await member.add_roles(role)
+        await channel.send(embed=embed)
