@@ -2,6 +2,7 @@ import re
 import disnake
 from disnake.ext import commands
 from config import settings
+from bot.utils.log import logger
 
 CENSORED_WORDS = ['ananas', 'pineapple', 'ананас']
 
@@ -29,6 +30,7 @@ def setup_events(bot):
 
         await member.add_roles(role)
         await member.send(embed=embed)
+        logger.info(f'New member joined: {member.name}')
 
     @bot.event
     async def on_message(message):
@@ -39,6 +41,7 @@ def setup_events(bot):
             await message.delete()
             await message.channel.send(
                 f'{message.author.mention}, ваше сообщение было удалено за использование запрещенного содержания.')
+            logger.info(f'User {message.author} said a prohibited word: {message.content}')
 
     @bot.event
     async def on_member_join(member):
@@ -55,3 +58,4 @@ def setup_events(bot):
 
         await member.add_roles(role)
         await channel.send(embed=embed)
+        logger.info(f'New member joined: {member.name}')
