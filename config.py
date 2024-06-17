@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     CHANNEL_ID_TWITCH: int
     CHANNEL_ID_TWITCH_LINK: int
     CHANNEL_ID_DOTA_LINK: int
-    CHANNEL_ID_DATIN: int
+    CHANNEL_ID_DATING: int
 
     TWITCH_CLIENT_ID: str
     TWITCH_CLIENT_SECRET: str

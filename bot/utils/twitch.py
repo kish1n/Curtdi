@@ -6,11 +6,8 @@ twitch = Twitch(settings.TWITCH_CLIENT_ID, settings.TWITCH_CLIENT_SECRET)
 twitch.authenticate_app([])
 
 async def authenticate():
-    try:
-        await twitch.authenticate_app([])
-        print('Twitch authenticated')
-    except Exception as e:
-        print(f'Error: {e}')
+    await twitch.authenticate_app([])
+
 
 async def is_streaming(user_login):
     # Получаем информацию о стриме пользователя

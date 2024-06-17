@@ -1,3 +1,5 @@
 discord~=2.3.2
 python-dotenv~=1.0.1
 disnake~=2.9.2
+twitchAPI~=4.2.0
+requests~=2.31.0

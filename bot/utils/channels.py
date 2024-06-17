@@ -1,11 +1,20 @@
 import disnake
 from disnake.ext import commands
 
-async def create_voice_channel(guild: disnake.Guild, channel_name: str, user_limit: int, category: disnake.CategoryChannel = None):
+async def create_voice_channel(guild: disnake.Guild, channel_name: str,
+                               user_limit: int, category: disnake.CategoryChannel = None):
     """Создает голосовой канал с ограничением по количеству участников."""
     channel = await guild.create_voice_channel(
         name=channel_name,
         user_limit=user_limit,
+        category=category
+    )
+    return channel
+
+async def create_voice_open_channel(guild: disnake.Guild, channel_name: str, category: disnake.CategoryChannel = None):
+    """Создает открытый голосовой канал."""
+    channel = await guild.create_voice_channel(
+        name=channel_name,
         category=category
     )
     return channel
